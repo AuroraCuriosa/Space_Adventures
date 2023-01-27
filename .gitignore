@@ -2,3 +2,11 @@
 __pycache__
 space_adventure_game_data.db
 pygame-1.9.6/
+*~
+venv/
+replit.nix
+poetry.lock
+pyproject.toml
+.breakpoints
+.replit
+"C:\\sqlite\\db\\pythonsqlite.db"
