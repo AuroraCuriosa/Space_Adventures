@@ -1,0 +1,4 @@
+.DS_Store
+__pycache__
+space_adventure_game_data.db
+pygame-1.9.6/
