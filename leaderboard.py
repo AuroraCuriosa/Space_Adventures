@@ -198,7 +198,6 @@ def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surfac
 
 
 def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, surface, bg):
-  print("ran display function")
   
   for i in range(ceil(screen_x / bg_width)):
     for j in range(ceil(screen_y / bg_height)):
@@ -214,12 +213,13 @@ def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, s
   
   
   for index in range(0, len(top_5)):
-    text_string = index + 1
+    text_string = str(index + 1)
     for x in range(0, len(top_5[index])):
-      text_obj=font_obj.render(str(top_5[index](x)),True,font_color)
-      text_width, text_height = font_obj.size(str(top_5[index](x)))
-      text_string = text_string + " " + str(top_5[index](x))
-    surface.blit(text_obj,((screen_x//2) - (text_width//2),(screen_y//(len(top_5)+1)*index+1)))
+      text_obj=font_obj.render(str(top_5[index][x]),True,font_color)
+      text_width, text_height = font_obj.size(str(top_5[index][x]))
+      text_string = text_string + " " + str(top_5[index][x])
+    text_width, text_height = font_obj.size(text_string)
+    surface.blit(text_obj,((screen_x//2) - (text_width//2),(screen_y//((len(top_5))*index+1))-text_height))
   
   
   
