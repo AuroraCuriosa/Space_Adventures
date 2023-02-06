@@ -52,7 +52,7 @@ start_time = pygame.time.get_ticks()
 pygame.time.set_timer(pygame.USEREVENT, 1 * 60//2 * 1000)
 
 
-def npc_management(game_score, asteroids, chance_asteroidspawn, lasers):
+def npc_management(asteroids, chance_asteroidspawn, lasers):
   asteroid_spawn = randint(0, chance_asteroidspawn)
   
   if asteroid_spawn == 0:
@@ -183,7 +183,7 @@ def game_main():
     if player.get_alive() == False:
       return game_score.get_score()
     
-    npc_management(game_score, asteroids, chance_asteroidspawn, player.lasers)
+    npc_management(asteroids, chance_asteroidspawn, player.lasers)
 
     
     draw(game_score, player, asteroids, surface, image_todisplay)

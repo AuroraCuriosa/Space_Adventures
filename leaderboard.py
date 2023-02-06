@@ -136,8 +136,8 @@ class Leaderboard:
         else:
             print("Error! cannot create the database connection.")
         
-        leaderboard_data = self.select_all_leaderboard_data()
-        print(leaderboard_data)
+        #leaderboard_data = self.select_all_leaderboard_data()
+        #print(leaderboard_data)
         #insertion_sort(leaderboard_data)
         
         

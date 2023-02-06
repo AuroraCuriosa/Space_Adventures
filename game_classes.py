@@ -39,7 +39,6 @@ class score():
 class asteroid():
   def __init__(self):
     self.alive = True
-    self.health = 100
     self.aim_point = [0,0]
     self.move_speed_xy = [0,0]
     self.image = pygame.image.load("SpaceShooterRedux/PNG/Meteors/meteorBrown_med3.png")

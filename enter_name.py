@@ -39,25 +39,22 @@ def main(highscores, score):
         sys.exit()
       if event.type == pygame.MOUSEBUTTONUP:
         pos_mouse_click = list(pygame.mouse.get_pos())
-        print(pos_mouse_click)
+        #print(pos_mouse_click)
 
       if event.type == pygame.KEYDOWN:
 
         if event.key == pygame.K_RETURN:
-          print(str(text_list))
           if len(text_list) > 0:
             typing = False
 
         elif event.key == pygame.K_BACKSPACE:
           if len(text_list) > 0:
               text_list = text_list[:-1]
-              print(text_list)
       
         else:
             if len(text_list) <= 10 and event.unicode != "" and ord(event.unicode) >= 32:
-                print(event.unicode)
+                #print(event.unicode)
                 text_list.append(event.unicode)
-                print(text_list)
 
     
     pygame.display.flip()
