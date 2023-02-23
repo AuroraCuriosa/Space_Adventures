@@ -52,7 +52,7 @@ def main(highscores, score):
               text_list = text_list[:-1]
       
         else:
-            if len(text_list) <= 10 and event.unicode != "" and ord(event.unicode) >= 32:
+            if len(text_list) < 10 and event.unicode != "" and ord(event.unicode) >= 32:
                 #print(event.unicode)
                 text_list.append(event.unicode)
 
@@ -84,15 +84,17 @@ def display_text(text_list):
   text = ''.join(text_list)
   
   font_color=(255, 255, 255) 
-  font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",30)
+  font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",45)
   # Render the objects
   
   if len(text) > 0:
       text_obj=font_obj.render(str(text),True,font_color)
       text_width, text_height = font_obj.size(str(text))
       surface.blit(text_obj,((screen_width//2) - (text_width//2),(screen_height//4) - (text_height//2)))
+  
+  font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",25)  
     
-  text_obj=font_obj.render("Type your name here:",True,font_color)
+  text_obj=font_obj.render("Type your name here for the leaderboard:",True,font_color)
   text_width, text_height = font_obj.size(str(text))
   surface.blit(text_obj,(5,5))
     

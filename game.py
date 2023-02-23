@@ -67,12 +67,24 @@ def npc_management(asteroids, chance_asteroidspawn, lasers):
       del asteroids[asteroidsToDelete[x]]
 
   if len(lasers) > 0:
-    lasersToDelete = []
-    for x in range(len(lasers)):
-      if lasers[x].get_alive() == False:
-        lasersToDelete.append(x)
-    for x in range(len(lasersToDelete)):
-      del lasers[lasersToDelete[x]]
+    #lasersToDelete = []
+    need_to_rescan_entire_list = True
+    start = 0
+    while need_to_rescan_entire_list:
+      need_to_rescan_entire_list = False # the for loop might not find any to delete, so assume that is the case until we find one
+      
+      for x in range(start, len(lasers)):
+        if lasers[x].get_alive() == False:
+            need_to_rescan_entire_list = True
+            del lasers[x]
+            start = x
+            break # only do one per pass of the list
+    
+    #for x in range(len(lasers)):
+    #  if lasers[x].get_alive() == False:
+    #    lasersToDelete.append(x)
+    #for x in range(len(lasersToDelete)):
+    #  del lasers[lasersToDelete[x]]
 
 
 
