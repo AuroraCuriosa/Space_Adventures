@@ -99,10 +99,8 @@ def has_mouse_clicked_button(pos_mouse_click, text_coords):
     pygame.mouse.set_visible(True)
   elif pos_mouse_click[0] >= text_coords[1][0] and pos_mouse_click[0] <= text_coords[1][2] and pos_mouse_click[1] >= text_coords[1][1] and pos_mouse_click[1] <= text_coords[1][3]:
     leaderboard.leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg)
-    pygame.display.set_caption('SPACE ADVENTURE')
   elif pos_mouse_click[0] >= text_coords[2][0] and pos_mouse_click[0] <= text_coords[2][2] and pos_mouse_click[1] >= text_coords[2][1] and pos_mouse_click[1] <= text_coords[2][3]:
     credits.temp_main()
-    pygame.display.set_caption('SPACE ADVENTURE')
     pygame.mouse.set_visible(True)
     
 
