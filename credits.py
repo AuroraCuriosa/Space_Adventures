@@ -15,21 +15,13 @@ screen_y = 480
 screen = pygame.display.set_mode((screen_x, screen_y))
 
 screen_width, screen_height = screen.get_size()
-DISPLAYSURF = pygame.display.set_caption('SPACE ADVENTURE - CREDITS')
 
 FPS = 60
 clock = pygame.time.Clock()
 
 
-def draw():
-    pass
 
 
-def update():
-    pass
-
-
-pygame.display.set_caption('End credits')
 screen = pygame.display.set_mode((640, 480))
 screen_r = screen.get_rect()
 font = pygame.font.Font("Orbitron/orbitron-black.otf", 30)
@@ -92,11 +84,3 @@ def temp_main():
         # cap framerate at 60 FPS
         clock.tick(60)
 
-
-#def credits_main():
-#  pygame.mouse.set_visible(False)
-#  quit_flag = False
-#
-#
-#    draw()
-#    update()

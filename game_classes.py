@@ -1,8 +1,12 @@
+#This file holds the classes required by the game. They are score, asteroid, player_ship and laser
+
+
+#importing
 import pygame
 from math import atan, sin, cos, sqrt
 from random import randint
 
-# Initializing surface - 0, 0 means autodetect ----- Currently Fixed
+
 screen_x = 640
 screen_y = 480
 surface = pygame.display.set_mode((screen_x, screen_y))
@@ -10,13 +14,12 @@ surface = pygame.display.set_mode((screen_x, screen_y))
 
 screen_width, screen_height = surface.get_size()
 DISPLAYSURF = pygame.display.set_caption('SPACE ADVENTURE')
-# Initialing RGB Color
-#color = 255, 0, 0
+
 bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
 bg_width, bg_height = bg.get_size()
 
 
-
+#The class that holds the game score
 class score():
   def __init__(self):
     self.score = 0
@@ -35,7 +38,7 @@ class score():
 
 
 
-
+#The class that forms asteroid objects
 class asteroid():
   def __init__(self):
     self.alive = True
@@ -141,7 +144,7 @@ class asteroid():
 
 
 
-
+#The class that forms the player ship
 class player_ship():
   def __init__(self):
     self.alive = True
@@ -227,7 +230,7 @@ class player_ship():
 
 
 
-
+#Laser class owned by player ship (aggregated relationship)
 class laser():
   def __init__(self, x_coord, y_coord, w_pressed, a_pressed, s_pressed, d_pressed):
     self.x_coord = x_coord
@@ -293,7 +296,3 @@ class laser():
       asteroid.explode()
       self.explode()
       
-    
-    
-    
-    
