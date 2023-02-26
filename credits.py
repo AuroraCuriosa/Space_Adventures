@@ -6,15 +6,10 @@
 import pygame, sys
 from math import ceil
 from pygame.locals import QUIT
+from screen_management import surface, screen_x, screen_y, screen_width, screen_height
 
 pygame.init()  # https://www.pygame.org/docs/ref/pygame.html#pygame.init
 
-# Initializing surface - 0, 0 means autodetect ----- Currently Fixed
-screen_x = 640
-screen_y = 480
-screen = pygame.display.set_mode((screen_x, screen_y))
-
-screen_width, screen_height = screen.get_size()
 
 FPS = 60
 clock = pygame.time.Clock()
@@ -27,7 +22,8 @@ screen_r = screen.get_rect()
 font = pygame.font.Font("Orbitron/orbitron-black.otf", 30)
 
 
-def temp_main():
+def credits_main():
+    ''' This is a loop for the credits menu ''' 
     bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
     bg_width, bg_height = bg.get_size()
 

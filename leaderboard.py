@@ -1,6 +1,6 @@
-# Get database info
-# Sort database info
-# Display top 10 from database info
+# Leaderboard 
+# Copyright © 2023 Emily Probin
+# 
 #
 # https://docs.python.org/3/library/sqlite3.html
 # https://www.sqlitetutorial.net/sqlite-python/
@@ -41,6 +41,9 @@ from datetime import date
 
 
 def insertion_sort(values, score_index):
+    ''' This sort algorithm sort the leaderboard (high score table) so we can show the top items.
+        This is an insertion sort.
+    '''
     for index in range (1,len(values)):
         #store the value to be inserted into the array
         current_element = values[index]
@@ -55,6 +58,9 @@ def insertion_sort(values, score_index):
     
     
 class Leaderboard:
+    ''' This is also called a high score table. This class contains the leaderboard data
+        and methods.
+    '''
     def __init__(self):
         self._open_db()
     
@@ -94,7 +100,7 @@ class Leaderboard:
         return False
             
     def add_default_high_scores(self):
-        
+        ''' When the database is created, we add some default values '''
         if not self.do_defaults_exist():
             # default highscores
             self.add_highscore('Rob', 100000)
@@ -108,7 +114,7 @@ class Leaderboard:
 
     
     def _open_db(self):
-
+        ''' Creates a connection with the database and add a leaderboard table, if it doesn't exist '''
         database_filename = "space_adventure_game_data.db"
                 
         # create a database connection
@@ -117,7 +123,6 @@ class Leaderboard:
 
         # create tables
         # https://www.sqlite.org/lang_createtable.html#rowid
-        # From https://www.sqlitetutorial.net/sqlite-date/ "SQLite does not support built-in date and/or time storage class. Instead, it leverages some built-in date and time functions to use other storage classes such as TEXT, REAL, or INTEGER for storing the date and time values."
         
         if self.conn is not None:
             sql_create_leaderboard_table = """ CREATE TABLE IF NOT EXISTS leaderboard (
@@ -141,10 +146,9 @@ class Leaderboard:
         #insertion_sort(leaderboard_data)
         
         
-    def is_new_highscore(self, score):
-        pass
-    
+
     def add_highscore(self, name, score):
+        ''' Adds a highscore to the leaderboard table '''
         if self.conn == None:
             self._open_db()
 
@@ -182,6 +186,7 @@ class Leaderboard:
     
 
 def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg):
+    ''' The main function for the leaderboard, contains the main loop for the leaderboard '''
     top_5 = highscores.get_top_highscores(5)
     
     display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, surface, bg)
@@ -192,13 +197,13 @@ def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surfac
           pygame.quit()
           sys.exit()
         if event.type == pygame.KEYUP:
-          if event.key == 27:
+          if event.key == 27: #Esc
             return 
       
 
 
 def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, surface, bg):
-  
+  ''' Displays the top scores for the leaderboard '''
   for i in range(ceil(screen_x / bg_width)):
     for j in range(ceil(screen_y / bg_height)):
       surface.blit(bg, ((i * bg_width), (j * bg_height)))

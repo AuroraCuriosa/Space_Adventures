@@ -2,8 +2,10 @@
 # Space Adventures game
 # Copyright (c) 2022 Emily Probin
 #
+# Contains the main game functions and the main game loop
 
-#!!!!!!!!!!!!!!!!!!#
+
+#This link has information on random numbers for games#
 #https://www.techwithtim.net/tutorials/game-development-with-python/side-scroller-pygame/random-object-generation/ 
 
 
@@ -12,35 +14,17 @@ from math import ceil, sqrt
 from random import randint
 import game_classes 
 from pygame.locals import QUIT
+from screen_management import surface, screen_x, screen_y
 
-#pygame.init()  # https://www.pygame.org/docs/ref/pygame.html#pygame.init
 
-# Initializing surface - 0, 0 means autodetect ----- Currently Fixed
-screen_x = 640
-screen_y = 480
-
-surface = pygame.display.set_mode((screen_x, screen_y))
-
+# Set the title of the window
 DISPLAYSURF = pygame.display.set_caption('SPACE ADVENTURE')
-# Initialing RGB Color
-#color = 255, 0, 0
+
+# Loads the background image
 bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
 bg_width, bg_height = bg.get_size()
 
 pygame.mouse.set_visible(False)
-
-
-
-
-#for i in range(int(bg_width / screen_x)):
-#  for j in range(int(bg_height / screen_y)):
-#    surface.blit(bg, (i * bg_width), (j * bg_height))
-#bg = pygame.transform.scale(bg, (screen_x, screen_y))
-
-
-# Changing surface color
-#surface.fill(color)
-#pygame.display.flip()
 
 image_todisplay = pygame.image.load("SpaceShooterRedux/PNG/Meteors/meteorBrown_med3.png")
 
@@ -53,11 +37,14 @@ pygame.time.set_timer(pygame.USEREVENT, 1 * 60//2 * 1000)
 
 
 def npc_management(asteroids, chance_asteroidspawn, lasers):
+  ''' Decides if an asteroid should be spawned, decides which asteroids and lasers are not alive and deletes them '''
   asteroid_spawn = randint(0, chance_asteroidspawn)
   
   if asteroid_spawn == 0:
     asteroids.append(game_classes.asteroid())
   
+  
+  # Check for asteroids that are not alive
   if len(asteroids) > 0:
     asteroidsToDelete = []
     for rock in range(len(asteroids)):
@@ -66,6 +53,7 @@ def npc_management(asteroids, chance_asteroidspawn, lasers):
     for x in range(len(asteroidsToDelete)):
       del asteroids[asteroidsToDelete[x]]
 
+  # Delete lasers that are not alive
   if len(lasers) > 0:
     #lasersToDelete = []
     need_to_rescan_entire_list = True
@@ -80,11 +68,7 @@ def npc_management(asteroids, chance_asteroidspawn, lasers):
             start = x
             break # only do one per pass of the list
     
-    #for x in range(len(lasers)):
-    #  if lasers[x].get_alive() == False:
-    #    lasersToDelete.append(x)
-    #for x in range(len(lasersToDelete)):
-    #  del lasers[lasersToDelete[x]]
+   
 
 
 
@@ -93,7 +77,7 @@ def npc_management(asteroids, chance_asteroidspawn, lasers):
 
 
 def draw(game_score, player, asteroids, surface, image_todisplay):
-  
+  ''' Prepares the background and score to be displayed, and moves the asteroids, lasers and player ship '''
   for i in range(ceil(screen_x / bg_width)):
     for j in range(ceil(screen_y / bg_height)):
       surface.blit(bg, ((i * bg_width), (j * bg_height)))
@@ -126,14 +110,17 @@ def draw(game_score, player, asteroids, surface, image_todisplay):
 
 
 def speedup_asteroidspawn(game_score, chance_asteroidspawn):
+  ''' Player Reward and Increased Game difficulty '''
   game_score.addfifty_toscore()
   chance_asteroidspawn = round(chance_asteroidspawn * 0.85, 2)
+  #Resets timer so this function is run again in 30 secs
   pygame.time.set_timer(pygame.USEREVENT,  1 * 60//2 * 1000)
 
 
 
 
 def game_main():
+  ''' This is the main module, contains the main game loop '''
   pygame.mouse.set_visible(False)
   game_score = game_classes.score() 
   asteroids = []
@@ -202,7 +189,3 @@ def game_main():
     
     
     pygame.display.flip()
-  #  https://www.pygame.org/docs/ref/display.html#pygame.display.update
-  #pygame.display.update()
-  
-  # https://www.pygame.org/docs/ref/display.html#pygame.display.flip

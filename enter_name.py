@@ -1,18 +1,24 @@
+# Enter Name Menu
+# Copyright © 2023 Emily Probin
+# 
+
 import pygame
 import sys
 from math import ceil
 from time import sleep
+from screen_management import surface, screen_width, screen_height
 
-screen_width = 640
-screen_height = 480
-surface = pygame.display.set_mode((screen_width, screen_height))
+
+#Load Background and store its measurements
 bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
 bg_width, bg_height = bg.get_size()
 
 # text entry
 # https://stackoverflow.com/questions/46390231/how-can-i-create-a-text-input-box-with-pygame
 
+
 def main(highscores, score):
+  ''' The main function for the enter name menu, contains the main loop '''
   clock = pygame.time.Clock()
   pygame.mouse.set_visible(True)
   text_list = []
@@ -25,6 +31,8 @@ def main(highscores, score):
   sleep(2)
     
   while typing:
+    #Loops till a name has been entered
+    
     button_text_coords = draw(text_list, button_text_coords)
     
     if len(text_list) > 0:
@@ -67,6 +75,7 @@ def main(highscores, score):
     
     
 def draw(text_list, button_text_coords):
+    ''' Draw the enter name '''
     display_background()
     display_text(text_list)
     button_text_coords = display_enter_button(button_text_coords)
@@ -74,6 +83,7 @@ def draw(text_list, button_text_coords):
     return button_text_coords
     
 def display_background():
+  ''' Part of draw - display the background for enter name '''
   for i in range(ceil(screen_width / bg_width)):
     for j in range(ceil(screen_height / bg_height)):
       surface.blit(bg, ((i * bg_width), (j * bg_height)))
@@ -81,6 +91,7 @@ def display_background():
 
 
 def display_text(text_list):
+  ''' Part of draw - Display the text being entered '''
   text = ''.join(text_list)
   
   font_color=(255, 255, 255) 
@@ -100,6 +111,7 @@ def display_text(text_list):
     
 
 def display_enter_button(button_text_coords):
+  ''' Part of draw - Display the enter button'''
   font_color=(190, 190, 190) 
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",30)
   # Render the objects
@@ -114,7 +126,10 @@ def display_enter_button(button_text_coords):
   
 
 def detect_button_press(button_text_coords, pos_mouse_click):
+    ''' Check if coordinates of mouse click are within the button bounds '''
     if pos_mouse_click[0] >= button_text_coords[0] and pos_mouse_click[0] <= button_text_coords[2] and pos_mouse_click[1] >= button_text_coords[1] and pos_mouse_click[1] <= button_text_coords[3]:
         return False
     else:
         return True
+        
+        

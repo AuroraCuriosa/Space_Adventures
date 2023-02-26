@@ -10,16 +10,11 @@ import game
 import credits
 import leaderboard
 import enter_name
+from screen_management import surface, screen_x, screen_y, screen_width, screen_height
 
 pygame.init()  # https://www.pygame.org/docs/ref/pygame.html#pygame.init
 
-# Initializing surface - 0, 0 means autodetect ----- Currently Fixed
-screen_x = 640
-screen_y = 480
-surface = pygame.display.set_mode((screen_x, screen_y))
 
-
-screen_width, screen_height = surface.get_size()
 DISPLAYSURF = pygame.display.set_caption('SPACE ADVENTURE')
 bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
 bg_width, bg_height = bg.get_size()
@@ -114,7 +109,7 @@ def has_mouse_clicked_button(pos_mouse_click, text_coords):
   #if neither
   #has mouse clicked 'Credits'
   elif pos_mouse_click[0] >= text_coords[2][0] and pos_mouse_click[0] <= text_coords[2][2] and pos_mouse_click[1] >= text_coords[2][1] and pos_mouse_click[1] <= text_coords[2][3]:
-    credits.temp_main()
+    credits.credits_main()
     pygame.display.set_caption('SPACE ADVENTURE')
     pygame.mouse.set_visible(True)
     
