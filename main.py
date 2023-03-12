@@ -12,7 +12,7 @@ import leaderboard
 import enter_name
 from screen_management import surface, screen_x, screen_y, screen_width, screen_height
 
-pygame.init()  # https://www.pygame.org/docs/ref/pygame.html#pygame.init
+pygame.init()  
 
 
 DISPLAYSURF = pygame.display.set_caption('SPACE ADVENTURE')
@@ -63,7 +63,7 @@ def display_text(text_coords):
 
 
 
-#Little function to convert the length of the button into the coords of the end of the button
+#Function to convert the length of the button into the coords of the end of the button
 def convert_lengthbutton_tocoords(text_coords):
   for x in range(0,3):
     text_coords[x][2] = text_coords[x][2] + text_coords[x][0]

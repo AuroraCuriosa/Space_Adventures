@@ -61,7 +61,6 @@ def main(highscores, score):
       
         else:
             if len(text_list) < 10 and event.unicode != "" and ord(event.unicode) >= 32:
-                #print(event.unicode)
                 text_list.append(event.unicode)
 
     
