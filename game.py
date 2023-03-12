@@ -82,10 +82,10 @@ def draw(game_score, player, asteroids, surface, image_todisplay):
     for j in range(ceil(screen_y / bg_height)):
       surface.blit(bg, ((i * bg_width), (j * bg_height)))
   
-  font_color=(200, 200, 200) 
+  font_colour=(200, 200, 200) 
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",20)
   # Render the objects
-  text_obj=font_obj.render("Score: " + str(game_score.get_score()),True,font_color)
+  text_obj=font_obj.render("Score: " + str(game_score.get_score()),True,font_colour)
   text_width, text_height = font_obj.size("Score: " + str(game_score.get_score()))
   surface.blit(text_obj,(screen_x - text_width - 10, text_height - 15))
 

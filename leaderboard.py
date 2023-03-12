@@ -209,10 +209,10 @@ def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, s
       surface.blit(bg, ((i * bg_width), (j * bg_height)))
      
       
-  font_color=(255, 255, 255) 
+  font_colour=(255, 255, 255) 
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",30)
   # Render the objects
-  text_obj=font_obj.render("Leaderboard",True,font_color)
+  text_obj=font_obj.render("Leaderboard",True,font_colour)
   text_width, text_height = font_obj.size("Leaderboard")
   surface.blit(text_obj,((screen_x//2) - (text_width//2),(5)))
   
@@ -221,11 +221,11 @@ def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, s
     text_string = str(index + 1) + "    "
     
     for x in range(0, len(top_5[index])):
-      #text_obj=font_obj.render(str(top_5[index][x]),True,font_color)
+      #text_obj=font_obj.render(str(top_5[index][x]),True,font_colour)
       
       text_string = text_string + " " + str(top_5[index][x])
       
-    text_obj=font_obj.render(text_string,True,font_color)
+    text_obj=font_obj.render(text_string,True,font_colour)
     text_width, text_height = font_obj.size(text_string)
     surface.blit(text_obj,((screen_x//2) - (text_width//2), 100+index*2*text_height))
   

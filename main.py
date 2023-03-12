@@ -38,24 +38,24 @@ def display_background():
 def display_text(text_coords):
   
   #White text colour
-  font_color=(255, 255, 255) 
+  font_colour=(255, 255, 255) 
   #Declare font
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",35)
   
   
   # Render the objects (in this case, it's the text)
-  text_obj=font_obj.render("Start Game",True,font_color)
+  text_obj=font_obj.render("Start Game",True,font_colour)
   text_width, text_height = font_obj.size("Start Game")
   surface.blit(text_obj,((screen_x//2) - (text_width//2),(screen_y//4) - (text_height//2)))
   text_coords[0] = [(screen_x//2) - (text_width//2),(screen_y//4) - (text_height//2), text_width, text_height]
   
-  text_obj=font_obj.render("Leaderboard",True,font_color)
+  text_obj=font_obj.render("Leaderboard",True,font_colour)
   text_width, text_height = font_obj.size("Leaderboard")
   surface.blit(text_obj,((screen_x//2) - (text_width//2),(screen_y//4*2) - (text_height//2)))
   text_coords[1] = [(screen_x//2) - (text_width//2),(screen_y//4*2) - (text_height//2), text_width, text_height]
   
   
-  text_obj=font_obj.render("Credits",True,font_color)
+  text_obj=font_obj.render("Credits",True,font_colour)
   text_width, text_height = font_obj.size("Credits")
   surface.blit(text_obj,((screen_x//2) - (text_width//2),(screen_y//4*3) - (text_height//2)))
   text_coords[2] = [(screen_x//2) - (text_width//2),(screen_y//4*3) - (text_height//2), text_width, text_height]

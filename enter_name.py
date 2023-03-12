@@ -94,28 +94,28 @@ def display_text(text_list):
   ''' Part of draw - Display the text being entered '''
   text = ''.join(text_list)
   
-  font_color=(255, 255, 255) 
+  font_colour=(255, 255, 255) 
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",45)
   # Render the objects
   
   if len(text) > 0:
-      text_obj=font_obj.render(str(text),True,font_color)
+      text_obj=font_obj.render(str(text),True,font_colour)
       text_width, text_height = font_obj.size(str(text))
       surface.blit(text_obj,((screen_width//2) - (text_width//2),(screen_height//4) - (text_height//2)))
   
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",25)  
     
-  text_obj=font_obj.render("Type your name here for the leaderboard:",True,font_color)
+  text_obj=font_obj.render("Type your name here for the leaderboard:",True,font_colour)
   text_width, text_height = font_obj.size(str(text))
   surface.blit(text_obj,(5,5))
     
 
 def display_enter_button(button_text_coords):
   ''' Part of draw - Display the enter button'''
-  font_color=(190, 190, 190) 
+  font_colour=(190, 190, 190) 
   font_obj = pygame.font.Font("Orbitron/orbitron-black.otf",30)
   # Render the objects
-  text_obj=font_obj.render("Enter",True,font_color)
+  text_obj=font_obj.render("Enter",True,font_colour)
   text_width, text_height = font_obj.size("Enter")
   button_text_coords = [(screen_width//2) - (text_width//2),(screen_height//4*3) - (text_height//2), (screen_width//2) - (text_width//2) + text_width, (screen_height//4*3) - (text_height//2) + text_height]
   
