@@ -5,6 +5,7 @@
 # https://docs.python.org/3/library/sqlite3.html
 # https://www.sqlitetutorial.net/sqlite-python/
 
+import asyncio
 import pygame, sys
 from pygame.locals import QUIT
 from math import ceil
@@ -161,7 +162,7 @@ class Leaderboard:
     
     
 
-def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg):
+async def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg):
     ''' The main function for the leaderboard, contains the main loop for the leaderboard '''
     top_5 = highscores.get_top_highscores(5)
     
@@ -175,7 +176,7 @@ def leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surfac
         if event.type == pygame.KEYUP:
           if event.key == 27: #Esc
             return 
-      
+      await asyncio.sleep(0)
 
 
 def display_leaderboard_scores(top_5, screen_x, screen_y, bg_width, bg_height, surface, bg):

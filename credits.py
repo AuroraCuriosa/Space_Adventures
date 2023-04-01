@@ -3,6 +3,7 @@
 # Copyright (c) 2022 Emily Probin
 #
 
+import asyncio
 import pygame, sys
 from math import ceil
 from pygame.locals import QUIT
@@ -22,7 +23,7 @@ screen_r = screen.get_rect()
 font = pygame.font.Font("Orbitron/orbitron-black.otf", 30)
 
 
-def credits_main():
+async def credits_main():
     ''' This is a loop for the credits menu ''' 
     bg = pygame.image.load("SpaceShooterRedux/Backgrounds/darkPurple.png")
     bg_width, bg_height = bg.get_size()
@@ -77,6 +78,7 @@ def credits_main():
         # only call this once so the screen does not flicker
         pygame.display.flip()
 
+        await asyncio.sleep(0)
+
         # cap framerate at 60 FPS
         clock.tick(60)
-

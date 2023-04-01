@@ -10,3 +10,5 @@ pyproject.toml
 .breakpoints
 .replit
 "C:\\sqlite\\db\\pythonsqlite.db"
+build/
+

@@ -9,6 +9,7 @@
 #https://www.techwithtim.net/tutorials/game-development-with-python/side-scroller-pygame/random-object-generation/ 
 
 
+import asyncio
 import pygame, sys
 from math import ceil, sqrt
 from random import randint
@@ -119,7 +120,7 @@ def speedup_asteroidspawn(game_score, chance_asteroidspawn):
 
 
 
-def game_main():
+async def game_main():
   ''' This is the main module, contains the main game loop '''
   pygame.mouse.set_visible(False)
   game_score = game_classes.score() 
@@ -189,3 +190,5 @@ def game_main():
     
     
     pygame.display.flip()
+
+    await asyncio.sleep(0)

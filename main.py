@@ -3,6 +3,7 @@
 # Copyright (c) 2022 Emily Probin
 #
 
+import asyncio
 import pygame, sys
 from math import ceil
 from pygame.locals import QUIT
@@ -92,24 +93,24 @@ highscores = leaderboard.Leaderboard()
 
 #Check for if the mouse has clicked a button
 #This is what changes them from text to functional buttons
-def has_mouse_clicked_button(pos_mouse_click, text_coords):
+async def has_mouse_clicked_button(pos_mouse_click, text_coords):
   #if mouse has clicked 'Start Game'
   if pos_mouse_click[0] >= text_coords[0][0] and pos_mouse_click[0] <= text_coords[0][2] and pos_mouse_click[1] >= text_coords[0][1] and pos_mouse_click[1] <= text_coords[0][3]:
-    score = game.game_main()
+    score = await game.game_main()
     if score != 0:
-        enter_name.main(highscores, score)
+        await enter_name.main(highscores, score)
     pygame.mouse.set_visible(True)
     
   #if not
   #has mouse clicked 'Leaderboard'  
   elif pos_mouse_click[0] >= text_coords[1][0] and pos_mouse_click[0] <= text_coords[1][2] and pos_mouse_click[1] >= text_coords[1][1] and pos_mouse_click[1] <= text_coords[1][3]:
-    leaderboard.leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg)
+    await leaderboard.leaderboard_main(highscores, screen_x, screen_y, bg_width, bg_height, surface, bg)
     pygame.display.set_caption('SPACE ADVENTURE')
   
   #if neither
   #has mouse clicked 'Credits'
   elif pos_mouse_click[0] >= text_coords[2][0] and pos_mouse_click[0] <= text_coords[2][2] and pos_mouse_click[1] >= text_coords[2][1] and pos_mouse_click[1] <= text_coords[2][3]:
-    credits.credits_main()
+    await credits.credits_main()
     pygame.display.set_caption('SPACE ADVENTURE')
     pygame.mouse.set_visible(True)
     
@@ -119,39 +120,44 @@ def has_mouse_clicked_button(pos_mouse_click, text_coords):
 
 
 
-#set frames per second
-FPS = 60
-clock = pygame.time.Clock()
+async def main():
+  #set frames per second
+  FPS = 60
+  clock = pygame.time.Clock()
 
-#initialise variables to be used later (these ones are used to make the buttons functional)
-text_coords = [[0] * 3 for i in range(4)]
-pos_mouse_click = [0, 0]
+  #initialise variables to be used later (these ones are used to make the buttons functional)
+  text_coords = [[0] * 3 for i in range(4)]
+  pos_mouse_click = [0, 0]
 
 
-## main module ##
-while True:
-  clock.tick(FPS)  # limit to at most 60 frames per second
-  
-  #prepare background for display
-  display_background()
-  
-  #prepare text for display
-  display_text(text_coords)
-  
-  #Change length of buttons to the coords of the end of the buttons
-  convert_lengthbutton_tocoords(text_coords)
-  
-  #Detect QUIT event and if the mouse has been pressed (if the mouse has been clicked get coords)
-  for event in pygame.event.get():
-    if event.type == QUIT:
-      pygame.quit()
-      sys.exit()
-    if event.type == pygame.MOUSEBUTTONUP:
-      pos_mouse_click = list(pygame.mouse.get_pos())
-  
-  #Check if the mouse has clicked a button, act accordingly, and reset the variable that holds the coords
-  has_mouse_clicked_button(pos_mouse_click, text_coords)
-  pos_mouse_click = [0,0]
-  
-  #Display the data we have prepared
-  pygame.display.flip()
+  ## main module ##
+  while True:
+    clock.tick(FPS)  # limit to at most 60 frames per second
+    
+    #prepare background for display
+    display_background()
+    
+    #prepare text for display
+    display_text(text_coords)
+    
+    #Change length of buttons to the coords of the end of the buttons
+    convert_lengthbutton_tocoords(text_coords)
+    
+    #Detect QUIT event and if the mouse has been pressed (if the mouse has been clicked get coords)
+    for event in pygame.event.get():
+      if event.type == QUIT:
+        pygame.quit()
+        sys.exit()
+      if event.type == pygame.MOUSEBUTTONUP:
+        pos_mouse_click = list(pygame.mouse.get_pos())
+    
+    #Check if the mouse has clicked a button, act accordingly, and reset the variable that holds the coords
+    await has_mouse_clicked_button(pos_mouse_click, text_coords)
+    pos_mouse_click = [0,0]
+    
+    #Display the data we have prepared
+    pygame.display.flip()
+
+    await asyncio.sleep(0)
+
+asyncio.run(main())

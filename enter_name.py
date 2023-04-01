@@ -2,6 +2,7 @@
 # Copyright © 2023 Emily Probin
 # 
 
+import asyncio
 import pygame
 import sys
 from math import ceil
@@ -17,7 +18,7 @@ bg_width, bg_height = bg.get_size()
 # https://stackoverflow.com/questions/46390231/how-can-i-create-a-text-input-box-with-pygame
 
 
-def main(highscores, score):
+async def main(highscores, score):
   ''' The main function for the enter name menu, contains the main loop '''
   clock = pygame.time.Clock()
   pygame.mouse.set_visible(True)
@@ -65,6 +66,9 @@ def main(highscores, score):
 
     
     pygame.display.flip()
+
+    await asyncio.sleep(0)
+    
 
   # add highscore
   selected_name = ''.join(text_list)
